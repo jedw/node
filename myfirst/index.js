@@ -10,8 +10,9 @@ const members = require('./Members');
 }); */
 
 //Middleware
-const logger = function(res, req, next) {
-    console.log(`${req.protocol}:??${req.get('host')}${req.originalUrl}`);
+const logger = function(req, res, next) {
+    console.log('Request Type:', req.method);
+    console.log('Request URL:', req.originalUrl)
     next();
 }
 
@@ -19,16 +20,17 @@ const logger = function(res, req, next) {
 app.use(logger);
 
 
-//set static folder
+//Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get ('/api/test', function(req, res){
     res.json({"status":"ok"});
 })
 
-//routes
+//Routes
 app.get ('/api/members', function(req, res){
     res.json(members);
 })
 
+//Listener
 app.listen(PORT, function () { console.log(`Server started on port ${PORT}`)});

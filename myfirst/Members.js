@@ -11,6 +11,18 @@ const members = [
         surname: 'McKnight',
         email: 'lmcknight@uclan.ac.uk'
     },
+    {
+        id: 3,
+        forname: 'Nicky',
+        surname: 'Danino',
+        email: 'ndanino@uclan.ac.uk'
+    },
+    {
+        id: 4,
+        forname: 'Julie',
+        surname: 'Allen',
+        email: 'jallen17@uclan.ac.uk'
+    }
 ]
 
 module.exports = members
