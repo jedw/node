@@ -1,0 +1,15 @@
+{
+  "name": "myfirst",
+  "version": "1.0.0",
+  "description": "youtube tutorial",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "jedwards",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
