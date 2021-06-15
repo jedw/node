@@ -18,19 +18,49 @@ const logger = function(req, res, next) {
 
 //Init middleware
 app.use(logger);
-
+app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Routes
 app.get ('/api/test', function(req, res){
     res.json({"status":"ok"});
 })
 
-//Routes
 app.get ('/api/members', function(req, res){
     res.json(members);
 })
+
+app.get ('/api/members/:id', function (req, res){
+    const found = members.some(function(member){
+        return member.id === parseInt(req.params.id)
+    })
+    if (found){
+        res.json(members.filter(function(member){
+            return member.id === parseInt(req.params.id)
+        }))
+    }
+    else{
+        res.status(400).json({msg: `Record not found for id: ${req.params.id}`})
+    }
+});
+
+app.post('/api/members', function(req, res){
+    const newid = members.length +1;
+    const newMember = {
+        id: newid,
+        forename: req.body.fname,
+        surname: req.body.sname,
+        email: req.body.email,
+    }
+    if (!newMember.forename || !newMember.surname || !newMember.email){
+        return res.status(400).json({msg: "required fields missing"})
+    }
+    members.push(newMember);
+    return res.json(members);
+});
 
 //Listener
 app.listen(PORT, function () { console.log(`Server started on port ${PORT}`)});

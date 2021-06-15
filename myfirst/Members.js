@@ -1,27 +1,33 @@
 const members = [
     {
         id: 1,
-        forname: 'Jonathan',
+        forename: 'Jonathan',
         surname: 'Edwards',
         email: 'jedwards8@uclan.ac.uk'
     },
     {
         id: 2,
-        forname: 'Lorna',
+        forename: 'Lorna',
         surname: 'McKnight',
         email: 'lmcknight@uclan.ac.uk'
     },
     {
         id: 3,
-        forname: 'Nicky',
+        forename: 'Nicky',
         surname: 'Danino',
         email: 'ndanino@uclan.ac.uk'
     },
     {
         id: 4,
-        forname: 'Julie',
+        forename: 'Julie',
         surname: 'Allen',
         email: 'jallen17@uclan.ac.uk'
+    },
+    {
+        id: 5,
+        forename: 'Rebecca',
+        surname: 'Clemson',
+        email: 'rclemson@uclan.ac.uk'
     }
 ]
 
