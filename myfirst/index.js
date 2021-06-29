@@ -5,6 +5,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const members = require('./Members');
 
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'student',
+  password: 'website',
+  database: 'node'
+})
+
+var MongoClient = require('mongodb').MongoClient
+
 /* app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 }); */
@@ -61,6 +71,48 @@ app.post('/api/members', function(req, res){
     members.push(newMember);
     return res.json(members);
 });
+
+app.get ('/api/mongodb/members', function(req, res){
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
+        if (err) throw err
+    
+    var db = client.db('members')
+    db.collection('members').find().toArray(function (err, result) {
+                    if (err) throw err
+                    res.json(result)
+            })
+    })
+})
+
+app.get ('/api/mongodb/members/:id', function(req, res){
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
+        if (err) throw err
+    
+    var db = client.db('members')
+    db.collection('members').find({"id": `${req.params.id}`}).toArray(function (err, result) {
+                    if (err) throw err
+                    res.json(result)
+            })
+    })
+})
+
+app.get ('/api/mysql/members', function(req, res){
+    connection.connect()
+    connection.query('SELECT * FROM memberse', function (err, result, fields) {
+    if (err) throw err
+        res.json(result)
+    })
+    connection.end()
+})
+
+app.get ('/api/mysql/members/:id', function(req, res){
+    connection.connect()
+    connection.query('SELECT * FROM memberse WHERE id = \''+req.params.id+'\'', function (err, result, fields) {
+    if (err) throw err
+        res.json(result)
+    })
+    connection.end()
+})
 
 //Listener
 app.listen(PORT, function () { console.log(`Server started on port ${PORT}`)});
