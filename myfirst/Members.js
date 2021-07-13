@@ -13,8 +13,8 @@ const members = [
     },
     {
         id: 3,
-        forename: 'Nicky',
-        surname: 'Danino',
+        forename: 'Wiley',
+        surname: 'Coyote',
         email: 'ndanino@uclan.ac.uk'
     },
     {

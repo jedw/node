@@ -13,7 +13,7 @@
     <script>
         $(document).ready(function(){
             $.ajax({
-                url:"http://localhost:3000/api/members",
+                url:"./api/members",
                 success: function(data){
                     $.each(data, function (i, item){
                         $("#members").append(

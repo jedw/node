@@ -15,6 +15,8 @@ var connection = mysql.createConnection({
 
 var MongoClient = require('mongodb').MongoClient
 
+app.set('view engine', 'pug')
+
 /* app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 }); */
@@ -35,12 +37,29 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
+
+
 app.get ('/api/test', function(req, res){
     res.json({"status":"ok"});
 })
 
+app.get ('/api/test2', function(req, res){
+    const response = [{
+        status: 'ok',
+        forename: 'Jonathan',
+        surname: 'Edwards',
+        email: 'jedwards8@uclan.ac.uk'
+    }]
+    res.json(response);
+})
+
+
 app.get ('/api/members', function(req, res){
     res.json(members);
+})
+
+app.get ('/pug/members', function(req, res){
+    res.render('members', {data: members})
 })
 
 app.get ('/api/members/:id', function (req, res){
@@ -76,7 +95,7 @@ app.get ('/api/mongodb/members', function(req, res){
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
         if (err) throw err
     
-    var db = client.db('members')
+    var db = client.db('local')
     db.collection('members').find().toArray(function (err, result) {
                     if (err) throw err
                     res.json(result)
@@ -88,7 +107,7 @@ app.get ('/api/mongodb/members/:id', function(req, res){
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
         if (err) throw err
     
-    var db = client.db('members')
+    var db = client.db('local')
     db.collection('members').find({"id": `${req.params.id}`}).toArray(function (err, result) {
                     if (err) throw err
                     res.json(result)
