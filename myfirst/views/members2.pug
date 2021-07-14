@@ -1,0 +1,17 @@
+html 
+    head
+        title members 
+    body    
+        h1 members
+        table 
+            tr
+                th Forename 
+                th Surname 
+                th Email
+            each val in data    
+                tr 
+                    td= val.Forename
+                    td= val.Surname
+                    td= val.Email
+            else    
+                td There are no values

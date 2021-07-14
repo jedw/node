@@ -103,6 +103,18 @@ app.get ('/api/mongodb/members', function(req, res){
     })
 })
 
+app.get ('/pug/mongodb/members', function(req, res){
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
+        if (err) throw err
+    
+    var db = client.db('local')
+    db.collection('members').find().toArray(function (err, result) {
+                    if (err) throw err
+                    res.render('members2', {data: result})
+            })
+    })
+})
+
 app.get ('/api/mongodb/members/:id', function(req, res){
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
         if (err) throw err
