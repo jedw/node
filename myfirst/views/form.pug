@@ -1,0 +1,19 @@
+html 
+    head
+        title New MongoDB Member
+    body    
+        h1 New MongoDB Member
+        form(action="./new", method="post") 
+            label(for="forename") Forename: 
+            input(type="text", name="forename", id="forename")
+            br
+            label(for="surname") Surname: 
+            input(type="text", name="surname", id="surname")
+            br
+            label(for="surname") Role: 
+            input(type="text", name="role", id="role")
+            br
+            label(for="email") Email: 
+            input(type="text", name="email", id="email")
+            br
+            input(type="submit")

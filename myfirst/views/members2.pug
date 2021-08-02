@@ -2,16 +2,22 @@ html
     head
         title members 
     body    
-        h1 members
+        h1 MongoDB Members
         table 
             tr
                 th Forename 
                 th Surname 
+                th Role
                 th Email
             each val in data    
                 tr 
                     td= val.Forename
                     td= val.Surname
+                    td= val.Role
                     td= val.Email
+                    td
+                        a(href="/pug/mongodb/edit/"+val._id) Edit
+                    td
+                        a(href="/pug/mongodb/delete/"+val._id) Delete
             else    
                 td There are no values

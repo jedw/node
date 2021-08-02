@@ -115,15 +115,35 @@ app.get ('/pug/mongodb/members', function(req, res){
     })
 })
 
+app.get ('/pug/mongodb/member/new', function(req, res){
+    res.render('form')
+})
+
+app.post('/pug/mongodb/member/new', function(req, res){
+    const newMember = {
+        Forename: req.body.forename,
+        Surname: req.body.surname,
+        Role: req.body.role,
+        Email: req.body.email
+    }
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client){
+        if (err) throw err
+        var db = client.db('local')
+        db.collection('members').insertOne(newMember, function (err, result) {
+            if (err) throw err
+            res.redirect("../members")
+        })
+    })
+})
+
 app.get ('/api/mongodb/members/:id', function(req, res){
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
         if (err) throw err
-    
-    var db = client.db('local')
-    db.collection('members').find({"id": `${req.params.id}`}).toArray(function (err, result) {
-                    if (err) throw err
-                    res.json(result)
-            })
+        var db = client.db('local')
+        db.collection('members').find({"id": `${req.params.id}`}).toArray(function (err, result) {
+                if (err) throw err
+                res.json(result)
+        })
     })
 })
 
