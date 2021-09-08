@@ -121,10 +121,10 @@ app.get ('/pug/mongodb/member/new', function(req, res){
 
 app.post('/pug/mongodb/member/new', function(req, res){
     const newMember = {
-        Forename: req.body.forename,
-        Surname: req.body.surname,
-        Role: req.body.role,
-        Email: req.body.email
+        forename: req.body.forename,
+        surname: req.body.surname,
+        role: req.body.role,
+        email: req.body.email
     }
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client){
         if (err) throw err
@@ -136,14 +136,63 @@ app.post('/pug/mongodb/member/new', function(req, res){
     })
 })
 
-app.get ('/api/mongodb/members/:id', function(req, res){
+app.get ('/pug/mongodb/member/edit/:id', function(req, res){
+    
     MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
         if (err) throw err
         var db = client.db('local')
-        db.collection('members').find({"id": `${req.params.id}`}).toArray(function (err, result) {
+        var id = req.params.id
+        var ObjectID = require('mongodb').ObjectID;
+        db.collection('members').find({"_id": new ObjectID(id)}).toArray(function (err, result) {
                 if (err) throw err
-                res.json(result)
+                res.render('edit', {data: result})
         })
+    })
+    
+    
+})
+
+app.post('/pug/mongodb/member/edit/:id', function(req, res){
+    const updMember = {
+        forename: req.body.forename,
+        surname: req.body.surname,
+        role: req.body.role,
+        email: req.body.email
+    }
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client){
+        if (err) throw err
+        var db = client.db('local')
+        var id = req.params.id
+        var ObjectID = require('mongodb').ObjectID
+        db.collection('members').update({"_id": new ObjectID(id)}, updMember, function (err, result) {
+            if (err) throw err
+            res.redirect("/pug/mongodb/members")
+        })
+    })
+})
+
+app.get('/pug/mongodb/member/delete/:id', function(req, res){
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client){
+        if (err) throw err
+        var db = client.db('local')
+        var id = req.params.id
+        var ObjectID = require('mongodb').ObjectID
+        db.collection('members').deleteOne({_id: new ObjectID(id)}, function (err, result){
+            if (err) throw errres.redirect("/pug/mongodb/members")
+        });
+    })
+})
+
+app.get('/api/mongodb/members/:id', function(req, res){
+    MongoClient.connect('mongodb://localhost:27017/members', function (err, client) {
+        if (err) throw err
+        var db = client.db('local')
+        var id = req.params.id
+        var ObjectID = require('mongodb').ObjectID;
+        db.collection('members').find({"_id": new ObjectID(id)}).toArray(function (err, result) {
+                 if (err) throw err
+                 res.json(result)
+         })
     })
 })
 

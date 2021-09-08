@@ -15,7 +15,7 @@ const members = [
         id: 3,
         forename: 'Wiley',
         surname: 'Coyote',
-        email: 'ndanino@uclan.ac.uk'
+        email: 'wcoyote@uclan.ac.uk'
     },
     {
         id: 4,

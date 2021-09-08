@@ -1,0 +1,19 @@
+html 
+    head
+        title Edit MongoDB Member
+    body    
+        h1 Edit MongoDB Member
+        form(action="./"+`${data[0]._id}`, method="post") 
+            label(for="forename") Forename: 
+            input(type="text", name="forename", id="forename" value=data[0].forename)
+            br
+            label(for="surname") Surname: 
+            input(type="text", name="surname", id="surname" value=data[0].surname)
+            br
+            label(for="surname") Role: 
+            input(type="text", name="role", id="role" value=data[0].role)
+            br
+            label(for="email") Email: 
+            input(type="text", name="email", id="email" value=data[0].email)
+            br
+            input(type="submit")

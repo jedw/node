@@ -11,13 +11,13 @@ html
                 th Email
             each val in data    
                 tr 
-                    td= val.Forename
-                    td= val.Surname
-                    td= val.Role
-                    td= val.Email
+                    td= val.forename
+                    td= val.surname
+                    td= val.role
+                    td= val.email
                     td
-                        a(href="/pug/mongodb/edit/"+val._id) Edit
+                        a(href="/pug/mongodb/member/edit/"+val._id) Edit
                     td
-                        a(href="/pug/mongodb/delete/"+val._id) Delete
+                        a(href="/pug/mongodb/member/delete/"+val._id) Delete
             else    
                 td There are no values
