@@ -38,7 +38,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 
-
 app.get ('/api/test', function(req, res){
     res.json({"status":"ok"});
 })
@@ -52,7 +51,6 @@ app.get ('/api/test2', function(req, res){
     }]
     res.json(response);
 })
-
 
 app.get ('/api/members', function(req, res){
     res.json(members);

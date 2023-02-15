@@ -7,27 +7,27 @@ const members = [
     },
     {
         id: 2,
-        forename: 'Lorna',
-        surname: 'McKnight',
-        email: 'lmcknight@uclan.ac.uk'
-    },
-    {
-        id: 3,
-        forename: 'Wiley',
-        surname: 'Coyote',
-        email: 'wcoyote@uclan.ac.uk'
-    },
-    {
-        id: 4,
-        forename: 'Julie',
+		forename: 'Julie',
         surname: 'Allen',
         email: 'jallen17@uclan.ac.uk'
     },
     {
+        id: 3,
+        forename: 'Oliver',
+        surname: 'Kerr',
+        email: 'okerr@uclan.ac.uk'
+    },
+    {
+        id: 4,
+        forename: 'Matt',
+        surname: 'Horton',
+        email: 'mplhorton@uclan.ac.uk'
+    },
+    {
         id: 5,
-        forename: 'Rebecca',
-        surname: 'Clemson',
-        email: 'rclemson@uclan.ac.uk'
+        forename: 'Chris',
+        surname: 'Finnigan',
+        email: 'cfinnigan@uclan.ac.uk'
     }
 ]
 
